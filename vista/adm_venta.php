@@ -184,6 +184,7 @@ if ($_SESSION['us_tipo']==3 || $_SESSION['us_tipo']==1) {
                                 <th>RUC</th>
                                 <th>Razon Social</th>
                                 <th>Monto Total</th>
+                                <th>Forma Pago</th>
                                 <th>Vendedor</th>
                                 <th>Acciones</th>
                             </tr>

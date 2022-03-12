@@ -6,10 +6,10 @@ class venta{
         $db=new Conexion();
         $this->acceso=$db->pdo;
     }
-    function crear($ruc,$razsocial,$total,$fecha,$vendedor){
-        $sql = "INSERT INTO venta(fecha,ruc,razsocial,total,vendedor) values(:fecha,:ruc,:razsocial,:total,:vendedor)";
+    function crear($ruc,$razsocial,$total,$fecha,$vendedor,$formapago){
+        $sql = "INSERT INTO venta(fecha,ruc,razsocial,total,vendedor,formapago) values(:fecha,:ruc,:razsocial,:total,:vendedor,:formapago)";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':fecha' => $fecha,':ruc' => $ruc,':razsocial' => $razsocial,':total' => $total,':vendedor' => $vendedor));
+        $query->execute(array(':fecha' => $fecha,':ruc' => $ruc,':razsocial' => $razsocial,':total' => $total,':vendedor' => $vendedor,':formapago' => $formapago));
     }
 
     function ultima_venta(){
@@ -27,7 +27,7 @@ class venta{
     }
 
     function buscar(){
-        $sql = "SELECT id_venta,fecha,ruc,razsocial,total, CONCAT(usuario.nombre_us,' ',usuario.apellidos_us) as vendedor FROM venta join usuario on vendedor=id_usuario";
+        $sql = "SELECT id_venta,fecha,ruc,razsocial,total, CONCAT(usuario.nombre_us,' ',usuario.apellidos_us) as vendedor,formaPago FROM venta join usuario on vendedor=id_usuario";
         $query = $this->acceso->prepare($sql);
         $query->execute();
         $this->objetos = $query->fetchall();
@@ -68,7 +68,7 @@ class venta{
     }
 
     function buscar_id($id_venta){
-        $sql = "SELECT id_venta,fecha,ruc,razsocial,total, CONCAT(usuario.nombre_us,' ',usuario.apellidos_us) as vendedor FROM venta join usuario on vendedor=id_usuario and id_venta=:id_venta";
+        $sql = "SELECT id_venta,fecha,ruc,razsocial,total, CONCAT(usuario.nombre_us,' ',usuario.apellidos_us) as vendedor,formaPago FROM venta join usuario on vendedor=id_usuario and id_venta=:id_venta";
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':id_venta'=>$id_venta));
         $this->objetos = $query->fetchall();

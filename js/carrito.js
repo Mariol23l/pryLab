@@ -267,10 +267,11 @@ $(document).ready(function () {
     }
 
     function procesar_Compra() {
-        let ruc, razsocial;
+        let ruc, razsocial,formapago,combo;
         ruc = $('#ruc_cliente').val();
         razsocial = $('#razsocial_cliente').val();
-  
+        combo = document.getElementById("formapago");
+        formapago = combo.options[combo.selectedIndex].text;          
         if (recuperarls().length == 0) {
             Swal.fire({
                 icon: 'error',
@@ -288,7 +289,7 @@ $(document).ready(function () {
         } else {
             verificar_Stock().then(error => {
                 if (error == 0) {
-                    Registrar_cotizacion(ruc, razsocial);
+                    Registrar_cotizacion(ruc, razsocial,formapago);
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -349,12 +350,12 @@ $(document).ready(function () {
         });
     }
 
-    function Registrar_cotizacion(ruc, razsocial) {
+    function Registrar_cotizacion(ruc, razsocial,formapago) {
         funcion = 'registrar_compra';
         let total = $('#total').get(0).textContent;
         let productos = recuperarls();
         let json = JSON.stringify(productos);
-        $.post('../controlador/CompraController.php', { funcion, total, ruc, razsocial, json }, (response) => {
+        $.post('../controlador/CompraController.php', { funcion, total, ruc, razsocial, json ,formapago}, (response) => {
             console.log(response);
         })
     }

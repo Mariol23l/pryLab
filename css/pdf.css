@@ -5,20 +5,20 @@
   }
   
   a {
-    color: #5D6975;
+    color: #0c7ef0;
     text-decoration: underline;
   }
   /*encabezado morado*/
   table thead tr {
-    height: 80px;
-    background: rgb(105, 102, 102);
+    height: 100px;
+    background: rgb(0, 110, 255);
   }
   body {
     position: relative;
     width: 21cm;  
     height: 29.7cm; 
     margin: 0 auto; 
-    color: #310058;
+    color: #0d0058;
     background: #FFFFFF; 
     font-family: Arial, sans-serif; 
     font-size: 12px; 
@@ -46,15 +46,15 @@
   }
   
   h1 {
-    border-top: 1px solid  rgb(67, 0, 80);
-    border-bottom: 1px solid rgb(67, 0, 80);
-    color: rgb(67, 0, 80);
+    border-top: 1px solid  rgb(15, 0, 80);
+    border-bottom: 1px solid rgb(15, 0, 80);
+    color: rgb(15, 0, 80);
     font-size: 2.4em;
     line-height: 1.4em;
-    font-weight: normal;
+    font-weight: bold;
     text-align: center;
     margin: 0 0 20px 0;
-    background: url(../img/dimension.png);
+    background: url(../img/wave.png);
   }
   
   #project {
@@ -63,7 +63,7 @@
   }
   
   #project span {
-    color: rgb(67, 0, 80);
+    color: rgb(5, 0, 80);
     text-align: right;
     width: 52px;
     margin-right: 10px;
@@ -86,7 +86,7 @@
   }
   #negocio {
     font-size: 18px;
-    color: rgb(67, 0, 80);
+    color: rgb(1, 0, 80);
   }
   
   table {
@@ -106,7 +106,7 @@
   }
   
   table th {
-    padding:15px 20px;
+    padding: 25px 20px;
     color: rgb(255, 255, 255);
     border-bottom: 1px solid #C1CED9;
     white-space: nowrap;        
@@ -115,6 +115,8 @@
   }
   
   table .service {
+    font-size: 40px;
+    font-weight: bold;
     text-align: center;
   }
 
@@ -122,28 +124,26 @@
     vertical-align: top;
   }
   table .servic {
-    text-align: right;
+    font-weight: bold;
   }
   table td.servic{
-      text-align: right;
+    font-size: 35px;
+      text-align: center;
     vertical-align: top;
   }
   table td {
-    font-size: 25px;
-    padding: 20px;
+    padding: 25px 20px;
     text-align: right;
   }
-  
-  
   
   
   table td.total {
     font-size: 30px;
-    color : rgb(67, 0, 80);
+    color : rgb(1, 0, 80);
   }
   
   table td.grand {
-    border-top: 1px solid  rgb(67, 0, 80);
+    border-top: 1px solid  rgb(17, 0, 80);
     
   }
   

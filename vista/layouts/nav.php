@@ -35,7 +35,7 @@
                     <a href="#" class="nav-link">Contact</a>
                 </li>
                 <li class="nav-item dropdown" id="cat-carrito" style="display: none;">
-                    <img  src="../img/carrito.png" class="imagen carrito nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                    <img  src="../img/Carrito.png" class="imagen carrito nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
                         data-toggle="dropdown" aria-haspopup="FALSE" aria-expanded="FALSE">
                     <span id="contador" class="contador badge badge-danger"></span>
                     </img>
@@ -172,6 +172,14 @@
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
                                     Listar Ventas
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="adm_cotizaciones.php" class="nav-link">
+                                <i class="nav-icon fas fa-list-check"></i>
+                                <p>
+                                    Listar Cotizaciones
                                 </p>
                             </a>
                         </li>

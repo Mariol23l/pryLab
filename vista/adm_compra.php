@@ -52,7 +52,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3 ){
                             <div class="datos_cp">
                                 <div class="form-group row mt-1">
                                     <span>Forma de Pago:</span>
-                                    <select name="laboratorio" id="laboratorio" class="form-control select2"
+                                    <select name="formapago" id="formapago" class="form-control select2"
                                         style="width: 15%;  -webkit-text-stroke: 1px black; border-style: none; border-bottom: solid;"
                                         required>
                                         <option value="1">Credito</option>

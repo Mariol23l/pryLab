@@ -23,6 +23,7 @@ $(document).ready(function () {
             { "data": "ruc" },
             { "data": "razsocial" },
             { "data": "total" },
+            { "data": "formapago" },
             { "data": "vendedor" },
             {
                 "defaultContent": `<button class="inprimir btn btn-outline-primary"><i class="fas fa-print"></i></button>
