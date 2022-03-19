@@ -2,7 +2,7 @@
 session_start();
 if ($_SESSION['us_tipo']==2) {
 ?>
-<title>AdminLTE 3 | Blank Page</title>
+<title>CATALAGO | TEC</title>
 <?php
 include_once 'layouts/nav.php';
 ?>
@@ -14,18 +14,49 @@ include_once 'layouts/nav.php';
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Blank Page</h1>
+            <h1>ACTIVIDAD | TEC</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Blank Page</li>
+              <li class="breadcrumb-item"><a href="tec_catalogo.php">Inicio</a></li>
+              <li class="breadcrumb-item active">Actividades</li>
             </ol>
           </div>
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
+<!-- Registro De Horarios-->
+<section>
+        <div class="container-fluid">
+            <div class="card card-lightblue">
+                <div class="card-header">
+                    <h3 class="card-title">Registro Horarios</h3>                  
+                </div>
+                <div class="card-body p-0 table-responsive">
+                    <table class="table table-hover text-nowrap">
+                        <thead class="table">
+                            <tr style="text-align: center;">
+                                <th>Dia</th>
+                                <th>Producto</th>
+                                <th>Stock</th>
+                                <th>Lote</th>
+                                <th>Vencimiento</th>                              
+                                 <th>Mes</th>
+                                 <th>Dia</th>
+                                 <th>Laboratorio</th>
+                                <th>Proveedor</th>
+                                <th>Presentacion</th>
+                            </tr>
+                        </thead>
+                        <tbody id="lot" class="table-active">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+    </section>
     <!-- Main content -->
     <section class="content">
 

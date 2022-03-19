@@ -20,7 +20,6 @@ if (!empty($_SESSION['us_tipo'])) {
     }
 } else {
     $usuario->Loguearse($user, $pass);
-
     if (!empty($usuario->objetos)) {
         foreach ($usuario->objetos as $objeto) {
             $_SESSION['usuario'] = $objeto->id_usuario;

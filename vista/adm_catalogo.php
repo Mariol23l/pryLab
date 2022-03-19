@@ -34,7 +34,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3 ){
                     <h3 class="card-title">Buscar Lotes en Riesgo</h3>                  
                 </div>
                 <div class="card-body p-0 table-responsive">
-                    <table class="table table-hover text-nowrap">
+                    <table class="animate__animated animate__backInDown table table-hover text-nowrap">
                         <thead class="table">
                             <tr style="text-align: center;">
                                 <th>Codigo</th>

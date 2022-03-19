@@ -9,13 +9,24 @@ class Usuario
         $this->acceso = $db->pdo;
     }
 
-    function Loguearse($dni, $pass)
+    function Loguearse($user, $pass)
     {
-        $sql = "SELECT * FROM usuario inner join tipo_us on us_tipo=id_tipo_us  where dni_us=:dni and contrasena_us=:pass";
+        $sql = "SELECT * FROM usuario inner join tipo_us on us_tipo=id_tipo_us  where dni_us=:user";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':dni' => $dni, ':pass' => $pass));
+        $query->execute(array(':user' => $user));
         $this->objetos = $query->fetchall();
-        return $this->objetos;
+        foreach ($this->objetos as $objeto) {
+            $contrasena_actual=$objeto->contrasena_us;
+        }
+        if(strpos($contrasena_actual,'$2y$10$')===0){
+            if (password_verify($pass,$contrasena_actual)) {
+                return $this->objetos;
+            }
+        }else{
+            if ($pass==$contrasena_actual) {
+                return $this->objetos;
+            }
+        }
     }
 
     function obtener_datos($id)
@@ -36,17 +47,33 @@ class Usuario
 
     function cambiarcontra($id_usuario, $oldpass, $newpass)
     {
-        $sql = "SELECT * FROM usuario where id_usuario=:id and contrasena_us=:oldpass";
+        $sql = "SELECT * FROM usuario where id_usuario=:id";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':id' => $id_usuario, ':oldpass' => $oldpass));
+        $query->execute(array(':id' => $id_usuario));
         $this->objetos = $query->fetchall();
-        if (!empty($this->objetos)) {
-            $sql = "UPDATE usuario set contrasena_us=:newpass where id_usuario=:id";
-            $query = $this->acceso->prepare($sql);
-            $query->execute(array(':id' => $id_usuario, ':newpass' => $newpass));
-            echo 'update';
-        } else {
-            echo 'noupdate';
+        foreach ($this->objetos as $objeto) {
+            $contrasena_actual=$objeto->contrasena_us;
+        }
+        if(strpos($contrasena_actual,'$2y$10$')===0){
+            if (password_verify($oldpass,$contrasena_actual)) {
+                $pass=password_hash($newpass,PASSWORD_BCRYPT,['cost'=>10]);
+                $sql = "UPDATE usuario set contrasena_us=:newpass where id_usuario=:id";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(':id' => $id_usuario, ':newpass' => $pass));
+                echo 'update';
+            }else{
+                echo 'noupdate';
+            }
+        }else{
+            if ($oldpass==$contrasena_actual) {
+                $pass=password_hash($newpass,PASSWORD_BCRYPT,['cost'=>10]);
+                $sql = "UPDATE usuario set contrasena_us=:newpass where id_usuario=:id";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(':id' => $id_usuario, ':newpass' => $pass));
+                echo 'update';
+            }else{
+                echo 'noupdate';
+            }
         }
     }
 
@@ -128,18 +155,40 @@ class Usuario
     }
 
     function borrar($pass,$id_borrado,$id_usuario){
-        $sql = "SELECT id_usuario FROM usuario where id_usuario=:id_usuario and contrasena_us=:pass";
+        $sql = "SELECT * FROM usuario where id_usuario=:id_usuario";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':id_usuario' => $id_usuario,':pass' => $pass));
+        $query->execute(array(':id_usuario' => $id_usuario));
         $this->objetos = $query->fetchall();
-        if (!empty($this->objetos)) {
-            $sql = "DELETE FROM usuario where id_usuario=:id";
-            $query = $this->acceso->prepare($sql);
-            $query->execute(array(':id' => $id_borrado));
-            echo 'borrado';
-        }else{
-            echo 'noborrado';
+        foreach ($this->objetos as $objeto) {
+            $contrasena_actual=$objeto->contrasena_us;
         }
+        if(strpos($contrasena_actual,'$2y$10$')===0){
+            if (password_verify($pass,$contrasena_actual)) {
+                $sql = "DELETE FROM usuario where id_usuario=:id";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(':id' => $id_borrado));
+                echo 'borrado';
+            }else{
+                echo 'noborrado';
+            }
+        }else{
+            if ($pass==$contrasena_actual) {
+                $sql = "DELETE FROM usuario where id_usuario=:id";
+                $query = $this->acceso->prepare($sql);
+                $query->execute(array(':id' => $id_borrado));
+                echo 'borrado';
+            }else{
+                echo 'noborrado';
+            }
+        }
+    }
+
+    function devolver_avatar($id_usuario){
+        $sql = "SELECT avatar FROM usuario where id_usuario=:id_usuario";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':id_usuario' => $id_usuario));
+        $this->objetos = $query->fetchall();
+        return $this->objetos;
     }
 }
 ?>

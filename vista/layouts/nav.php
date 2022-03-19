@@ -1,4 +1,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- FavIcon-->
+<link rel="icon" href="../img/logo.png" type="image/png">
+<!--Animate-->
+<link rel="stylesheet" href="../css/animate.min.css">
 <!-- Compra-->
 <link rel="stylesheet" href="../css/compra.css">
 <!-- Select2-->
@@ -114,7 +118,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li id="gestion_usuario" class="nav-item">
                             <a href="adm_usuario.php" class="nav-link">
                                 <i class="nav-icon fas fa-users""></i>                        
                                 <p>                               
@@ -122,7 +126,7 @@
                                 </p>
                             </a>
                             <li class="nav-header">CLINICAS</li>
-                        <li class="nav-item">
+                        <li  id="gestion_clientes" class="nav-item">
                             <a href="adm_cliente.php" class="nav-link">
                                 <i class="nav-icon fas fa-hospital-user"></i>
                                 <p>
@@ -130,9 +134,8 @@
                                 </p>
                             </a>
                         </li>
-                         <li class=" nav-header">ALMACEN
-                        </li>
-                        <li class="nav-item">
+                         <li class=" nav-header">ALMACEN</li>
+                        <li  id="gestion_producto" class="nav-item">
                             <a href="adm_producto.php" class="nav-link">
                                 <i class="nav-icon fas fa-pills"></i>
                                 <p>
@@ -141,7 +144,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li  id="gestion_atributo" class="nav-item">
                             <a href="adm_atributo.php" class="nav-link">
                                 <i class="nav-icon fas fa-vials"></i>
                                 <p>
@@ -149,7 +152,7 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li  id="gestion_lote" class="nav-item">
                             <a href="adm_lote.php" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
                                 <p>
@@ -158,7 +161,7 @@
                             </a>
                         </li>
                         <li class="nav-header">COMPRAS</li>
-                        <li class="nav-item">
+                        <li  id="gestion_proveedor" class="nav-item">
                             <a href="adm_proveedor.php" class="nav-link">
                                 <i class="nav-icon fas fa-truck"></i>
                                 <p>
@@ -167,7 +170,7 @@
                             </a>
                         </li>
                         <li class="nav-header">VENTAS</li>
-                        <li class="nav-item">
+                        <li  id="gestion_venta" class="nav-item">
                             <a href="adm_venta.php" class="nav-link">
                                 <i class="nav-icon fas fa-clipboard-list"></i>
                                 <p>
@@ -175,11 +178,20 @@
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li  id="gestion_cotizaciones" class="nav-item">
                             <a href="adm_cotizaciones.php" class="nav-link">
                                 <i class="nav-icon fas fa-list-check"></i>
                                 <p>
                                     Listar Cotizaciones
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-header">ENCOMIENDAS</li>
+                        <li class="nav-item">
+                            <a href="tec_encomiendas" class="nav-link">
+                                <i class="nav-icon fas fa-user-cog"></i>
+                                <p>
+                                    Envios a Departamentos
                                 </p>
                             </a>
                         </li>

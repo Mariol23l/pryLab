@@ -26,7 +26,7 @@ if ($_POST['funcion']=='buscar') {
     foreach($lote->objetos as $objeto){
         $vencimiento =new DateTime($objeto->vencimiento);
         $diferencia=$vencimiento->diff($fecha_actual);
-        $año=$diferencia->y;
+        $anio=$diferencia->y;
         $mes=$diferencia->m;
         $dia=$diferencia->d;
         $verficado=$diferencia->invert;
@@ -34,11 +34,11 @@ if ($_POST['funcion']=='buscar') {
             $mes=$mes*(-1);
             $dia=$dia*(-1);
             $estado='danger';
-        }else {
-            if($mes>3 ){
+        }else {  
+            if($mes>3 || $anio>=1){
                 $estado='light';
             }
-            if($mes<=3 && $año<1){
+            else if($mes<=3 ){
                 $estado='warning';
             }
         }

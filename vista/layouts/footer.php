@@ -26,4 +26,26 @@
 <!-- Select2-->
 <script src="../js/select2.js"></script>
 </body>
+<script>
+    let funcion='devolver_avatar';
+    $.post('../controlador/UsuarioController.php',{funcion},(response)=>{
+        const avatar=JSON.parse(response);
+        $('#avatar3').attr('src','../img/'+avatar.avatar);
+    });
+    funcion='tipo_usuario'
+    $.post('../controlador/UsuarioController.php',{funcion},(response)=>{
+        if (response==1) {
+           $('#gestion_lote').hide();
+        }else if (response==2) {
+            $('#gestion_lote').hide();
+            $('#gestion_clientes').hide();
+            $('#gestion_producto').hide();
+            $('#gestion_proveedor').hide();
+            $('#gestion_venta').hide();
+            $('#gestion_cotizaciones').hide();
+            $('#gestion_usuario').hide();
+            $('#gestion_atributo').hide();
+        }
+    });
+</script>
 </html>
