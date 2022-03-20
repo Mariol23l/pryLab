@@ -174,12 +174,12 @@ $(document).ready(function () {
         }
     }
 
-    function recuperarls_venta_compra() {
+    function recuperarls_venta_compra1() {
         let productos, id_producto;
         productos = recuperarls();
         funcion = "buscar_id";
         productos.forEach(lote => {
-            id_producto = lote.id;
+            console.log(id_producto);
             $.post('../controlador/ProductoController.php', { funcion, id_producto }, (response) => {
                 let template_compra = '';
                 let json = JSON.parse(response);
@@ -206,6 +206,19 @@ $(document).ready(function () {
                 $('#lista-compra').append(template_compra);
             })
         });
+    }
+    async function recuperarls_venta_compra() {
+        let productos;
+        productos = recuperarls();
+        funcion = "traer_productos";
+
+        const response = await fetch('../controlador/ProductoController.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: 'funcion=' + funcion + '&&productos=' + JSON.stringify(productos)
+        })
+        let resultado = await response.text();
+        $('#lista-compra').append(resultado);
     }
     /*
     $(document).on('click', '#actualizar', (e) => {

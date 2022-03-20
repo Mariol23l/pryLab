@@ -135,4 +135,40 @@ if ($_POST['funcion']=='cambiar_avatar') {
             }
             echo $error;
         }
+
+        if ($_POST['funcion']=='traer_productos') {
+            $html="";
+            $productos=json_decode($_POST['productos']);
+            foreach ($productos as $resultado) {
+                $producto->buscar_idp($resultado->id);
+                foreach ($producto->objetos as $objeto) {
+                    $subtotal=$objeto->precio*$resultado->cantidad;
+                    $producto->obtener_stock_lote($objeto->id_producto);
+                    foreach ($producto->objetos as $obj) {
+                        $stock=$obj->total;
+                    }
+                    $html.="
+                    <tr prodId='$objeto->id_lote' prodPrecio='$objeto->precio'>
+                    <td>$objeto->nombre</td>
+                    <td>$objeto->lote</td>
+                    <td>$objeto->stock</td>
+                    <td>$objeto->vencimiento</td>
+                    <td>$objeto->presentacion</td>
+                    <td>$objeto->laboratorio</td>          
+                    <td class='precio'>
+                    <input id='prodPre' type='number' min='0' max='10' class='form-control cantidad_producto' value='$resultado->precio'>
+                    </td>    
+                    <td>
+                    <input id='prodCantidad' type='number' min='0' max='10' class='form-control cantidad_producto' value='$resultado->cantidad'>
+                    </td>
+                    <td class='subtotales'>
+                    <h5>$subtotal</h5>
+                    </td>
+                    <td><button class='borrar-producto btn btn-danger'><i class='fas fa-times-circle'></i></button></td>
+        </tr>
+        ";
+                }
+            }
+            echo $html;
+        }
 ?>

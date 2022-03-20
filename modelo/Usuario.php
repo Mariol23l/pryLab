@@ -14,23 +14,28 @@ class Usuario
         $sql = "SELECT * FROM usuario inner join tipo_us on us_tipo=id_tipo_us  where dni_us=:user";
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':user' => $user));
-        $this->objetos = $query->fetchall();
-        foreach ($this->objetos as $objeto) {
+        $objetos = $query->fetchall();
+        foreach ($objetos as $objeto) {
             $contrasena_actual=$objeto->contrasena_us;
         }
         if(strpos($contrasena_actual,'$2y$10$')===0){
             if (password_verify($pass,$contrasena_actual)) {
-                return $this->objetos;
+                 return 'logueado';
             }
         }else{
             if ($pass==$contrasena_actual) {
-                return $this->objetos;
+                return 'logueado';
             }
         }
     }
-
-    function obtener_datos($id)
-    {
+    function obtener_dato_logueado($user){
+        $sql = "SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us and dni_us=:user";
+        $query = $this->acceso->prepare($sql);
+        $query->execute(array(':user' => $user));
+        $this->objetos = $query->fetchall();
+        return $this->objetos;
+    }
+    function obtener_datos($id){
         $sql = "SELECT * FROM usuario join tipo_us on us_tipo=id_tipo_us and id_usuario=:id";
         $query = $this->acceso->prepare($sql);
         $query->execute(array(':id' => $id));
