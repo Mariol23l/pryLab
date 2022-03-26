@@ -197,6 +197,7 @@ $(document).ready(function () {
                                                 <td>
                                                 <input id="prodCantidad" type="number" min="0" max="10" class="form-control cantidad_producto" value="${lote.cantidad}">
                                                 </td>
+  
                                                 <td class="subtotales">
                                                 <h5>${parseFloat(lote.precio * lote.cantidad).toFixed(2)}</h5>
                                                 </td>
@@ -235,19 +236,21 @@ $(document).ready(function () {
     //KEYUP Permite registrar eventos sirve para la tabla ADM_COMPRA
 
     $('#cpro').keyup((e) => {
-        let id, cantidad, producto, productos, montos, precio;
+        let id, cantidad, producto, productos, montos, precio, psigv;
         producto = $(this)[0].activeElement.parentElement.parentElement;
         id = $(producto).attr('prodId');
         // precio = $(producto).attr('prodPrecio');
         precio = producto.querySelector('#prodPre').value;
         cantidad = producto.querySelector('#prodCantidad').value;
         montos = document.querySelectorAll('.subtotales');
+        psigv = document.querySelectorAll('.psigv');
         productos = recuperarls();
         productos.forEach(function (prod, indice) {
             if (prod.id === id) {
                 prod.cantidad = cantidad;
                 prod.precio = precio;
-                montos[indice].innerHTML = `<h5>${cantidad * precio}</h5>`
+                montos[indice].innerHTML = `<h5>${(cantidad * precio).toFixed(2)}</h5>`
+                psigv[indice].innerHTML = `<h6>${(precio/1.18).toFixed(8)}</h6>`
             }
         });
         localStorage.setItem('productos', JSON.stringify(productos));
@@ -280,10 +283,12 @@ $(document).ready(function () {
     }
 
     function procesar_Compra() {
-        let ruc, razsocial,formapago,combo;
+        let ruc, razsocial,formapago,combo,fven;
         ruc = $('#ruc_cliente').val();
         razsocial = $('#razsocial_cliente').val();
         combo = document.getElementById("formapago");
+        fven = $('#vencimiento').val();
+        
         formapago = combo.options[combo.selectedIndex].text;          
         if (recuperarls().length == 0) {
             Swal.fire({
@@ -302,7 +307,7 @@ $(document).ready(function () {
         } else {
             verificar_Stock().then(error => {
                 if (error == 0) {
-                    Registrar_cotizacion(ruc, razsocial,formapago);
+                    Registrar_cotizacion(ruc, razsocial,formapago,fven);
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
@@ -363,12 +368,12 @@ $(document).ready(function () {
         });
     }
 
-    function Registrar_cotizacion(ruc, razsocial,formapago) {
+    function Registrar_cotizacion(ruc, razsocial,formapago,fven) {
         funcion = 'registrar_compra';
         let total = $('#total').get(0).textContent;
         let productos = recuperarls();
         let json = JSON.stringify(productos);
-        $.post('../controlador/CompraController.php', { funcion, total, ruc, razsocial, json ,formapago}, (response) => {
+        $.post('../controlador/CompraController.php', { funcion, total, ruc, razsocial, json ,formapago,fven}, (response) => {
             console.log(response);
         })
     }

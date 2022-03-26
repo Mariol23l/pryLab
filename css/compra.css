@@ -180,24 +180,30 @@
     color: #000;
   }
   .compra tbody tr td:nth-child(8):before {
-    content: "Cantidad";
+    content: "Precio S/I.G.V";
     font-weight: bold;
     font-size: 15px;
     color: #000;
   }
   .compra tbody tr td:nth-child(9):before {
-    content: "Subtotal";
+    content: "Cantidad";
     font-weight: bold;
     font-size: 15px;
     color: #000;
   }
   .compra tbody tr td:nth-child(10):before {
-    content: "Eliminar";
+    content: "Subtotal";
     font-weight: bold;
     font-size: 15px;
     color: #000;
   }
   .compra tbody tr td:nth-child(11):before {
+    content: "Eliminar";
+    font-weight: bold;
+    font-size: 15px;
+    color: #000;
+  }
+  .compra tbody tr td:nth-child(12):before {
     content: "Totales";
     font-weight: bold;
     font-size: 15px;
@@ -230,5 +236,8 @@
     text-align: center;
     right: 0;
     bottom: 0;
+}
+#formapago{
+    width: 27% !important;
 }
 }

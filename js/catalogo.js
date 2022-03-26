@@ -2,6 +2,7 @@ $(document).ready(function () {
     $('#cat-carrito').show();
     buscar_lote();
     mostrar_lotes_riesgo();
+    mostrar_fac_vencidas();
     function buscar_lote(consulta) {
         funcion = "buscar";
         $.post('../controlador/LoteController.php', { consulta, funcion }, (response) => {
@@ -73,15 +74,15 @@ $(document).ready(function () {
                     template += `
                 <tr class="" style="text-align:center;">
                 <td><b>${lote.id}</b></td>
-                <td><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;">${lote.nombre}</h1><b></td>
-                <td><b>${lote.stock}<b></td>
-                <td><b>${lote.lote}<b></td>
-                <td ><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;">${lote.vencimiento}</h1><b></td>
-                <td><b>${lote.mes}</td>
-                <td ><b>${lote.dia}</td>
+                <td><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;font-size: 15px;">${lote.nombre}</h1></b></td>
+                <td><b>${lote.stock}</b></td>
+                <td><b>${lote.lote}</b></td>
+                <td ><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;font-size: 15px;">${lote.vencimiento}</h1></b></td>
+                <td><b>${lote.mes}</b></td>
+                <td ><b>${lote.dia}</b></td>
                 <td><b>${lote.laboratorio}</td>
-                <td><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;">${lote.proveedor}</h1><b></td>
-                <td><b>${lote.presentacion}<b></td>
+                <td><b><h1 class="badge badge-${lote.estado}" style="border-radius:$radius; padding:0.3rem 1rem;font-size: 15px;">${lote.proveedor}</h1></b></td>
+                <td><b>${lote.presentacion}</b></td>
                 </tr>
                 `;
                 }              
@@ -89,5 +90,32 @@ $(document).ready(function () {
             $('#lot').html(template);
         })
     }
+    function mostrar_fac_vencidas() {
+        funcion = 'buscar_venta';
+        $.post('../controlador/VentaController.php', { funcion }, (response) => {
+            console.log(response);
+             const ventas = JSON.parse(response);
+            
+             let template = '';
+             ventas.forEach(venta => {
+                 if (venta.estado=='warning' || venta.estado=='danger') {
+                     template += `
+                 <tr class="" style="text-align:center;">
+                 <td><b>${venta.id}</b></td>
+                 <td><b>${venta.ruc}</b></td>
+                 <td><b>${venta.razsocial}</b></td>
+                 <td><b><h1 class="badge badge-${venta.estado}" style="border-radius:$radius; padding:0.3rem 1rem; font-size: 15px;">${venta.formapago}</h1></b></td>
+                 <td ><b><h1 class="badge badge-${venta.estado}" style="border-radius:$radius; padding:0.3rem 1rem;font-size: 15px;">${venta.total}</h1></b></td>
+                 <td><b>${venta.fechaemision}</td>
+                 <td ><b><h1 class="badge badge-${venta.estado}" style="border-radius:$radius; padding:0.3rem 1rem;font-size: 15px;">${venta.fechavencimiento}</h1></b></td>
+                 <td><b>${venta.vendedor}</b></td>
+            
+                 </tr>
+                 `;
+                 }              
+             });
+             $('#fac').html(template);
+         })
+     }
     
 })

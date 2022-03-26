@@ -6,10 +6,10 @@ class venta{
         $db=new Conexion();
         $this->acceso=$db->pdo;
     }
-    function crear($ruc,$razsocial,$total,$fecha,$vendedor,$formapago){
-        $sql = "INSERT INTO venta(fecha,ruc,razsocial,total,vendedor,formapago) values(:fecha,:ruc,:razsocial,:total,:vendedor,:formapago)";
+    function crear($ruc,$razsocial,$total,$fecha,$vendedor,$formapago,$fven){
+        $sql = "INSERT INTO venta(fecha,fechaVen,ruc,razsocial,total,vendedor,formapago) values(:fecha,:fechaVen,:ruc,:razsocial,:total,:vendedor,:formapago)";
         $query = $this->acceso->prepare($sql);
-        $query->execute(array(':fecha' => $fecha,':ruc' => $ruc,':razsocial' => $razsocial,':total' => $total,':vendedor' => $vendedor,':formapago' => $formapago));
+        $query->execute(array(':fecha' => $fecha,':fechaVen'=>$fven,':ruc' => $ruc,':razsocial' => $razsocial,':total' => $total,':vendedor' => $vendedor,':formapago' => $formapago));
     }
 
     function ultima_venta(){
@@ -74,7 +74,25 @@ class venta{
         $this->objetos = $query->fetchall();
         return $this->objetos;
     }
-
+    function buscar_venta(){
+        if (!empty($_POST['consulta'])) {
+            $consulta = $_POST['consulta'];
+            $sql = "SELECT * FROM venta 
+            join usuario on vendedor=id_usuario
+            where razsocial LIKE :consulta ";
+            $query = $this->acceso->prepare($sql);
+            $query->execute(array(':consulta' => "%$consulta%"));
+            $this->objetos = $query->fetchall();
+            return $this->objetos;
+        } else {
+            $sql = "SELECT * FROM venta
+            join usuario on vendedor=id_usuario
+             where razsocial NOT LIKE '' ORDER BY id_venta DESC, razsocial ASC LIMIT 25";
+            $query = $this->acceso->prepare($sql);
+            $query->execute();
+            $this->objetos = $query->fetchall();
+            return $this->objetos;
+        }
+    }
 }
-    
 ?>

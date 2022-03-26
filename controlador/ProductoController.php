@@ -142,7 +142,8 @@ if ($_POST['funcion']=='cambiar_avatar') {
             foreach ($productos as $resultado) {
                 $producto->buscar_idp($resultado->id);
                 foreach ($producto->objetos as $objeto) {
-                    $subtotal=$objeto->precio*$resultado->cantidad;
+                    $subtotal=$resultado->precio*$resultado->cantidad;
+                    $psigv=number_format($resultado->precio/1.18,8);
                     $producto->obtener_stock_lote($objeto->id_producto);
                     foreach ($producto->objetos as $obj) {
                         $stock=$obj->total;
@@ -154,7 +155,8 @@ if ($_POST['funcion']=='cambiar_avatar') {
                     <td>$objeto->stock</td>
                     <td>$objeto->vencimiento</td>
                     <td>$objeto->presentacion</td>
-                    <td>$objeto->laboratorio</td>          
+                    <td>$objeto->laboratorio</td>     
+                    <td class='psigv'>$psigv</td>     
                     <td class='precio'>
                     <input id='prodPre' type='number' min='0' max='10' class='form-control cantidad_producto' value='$resultado->precio'>
                     </td>    

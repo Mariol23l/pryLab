@@ -26,6 +26,36 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3 ){
             </div>
         </div><!-- /.container-fluid -->
     </section>
+    <!--BUSCADOR FACTURAS POR VENCER-->
+<section>
+        <div class="container-fluid">
+            <div class="card card-lightblue">
+                <div class="card-header">
+                    <h3 class="card-title">Facturas por Vencer</h3>                  
+                </div>
+                <div class="card-body p-0 table-responsive">
+                    <table class="animate__animated animate__backInDown table table-hover text-nowrap">
+                        <thead class="table">
+                            <tr style="text-align: center;">
+                                <th>Codigo</th>
+                                <th>R.U.C</th>
+                                <th>Clinica</th>
+                                <th>Tipo Pago</th>
+                                <th>Total S/.</th>                              
+                                 <th>Fecha Emision</th>
+                                 <th>Fecha Vencimiento</th>
+                                 <th>Vendedor</th>
+                            </tr>
+                        </thead>
+                        <tbody id="fac" class="table-active">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                </div>
+            </div>
+        </div>
+    </section>
 <!--BUSCADOR DE LOTES EN RIESGO-->
 <section>
         <div class="container-fluid">

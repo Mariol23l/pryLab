@@ -59,14 +59,23 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3 ){
                                         <option value="2">Contado</option>
                                     </select>
                                 </div>
-                                
-                                <div class="form-group row">
+                                <div style="width: 100%;display: flex;justify-content: space-between;align-items: center;">
+                                    <div class="form-group row">
                                     <span>Fecha Emision: </span>
                                     <div class="input-group-append col-md-6">
                                         <input type="date" class="form-control" id="fecha"
                                             value="<?php echo date("Y-m-d");?>" placeholder="Ingresa Fecha de Emision">
                                     </div>
                                 </div>
+                                <div class="form-group row" style="margin-right: 28rem;">
+                                    <span>Fecha Vencimiento: </span>
+                                    <div  class="input-group-append col-md-6">
+                                        <input id="vencimiento" type="date" class="form-control" id="fecha"
+                                            value="<?php echo date("Y-m-d");?>" placeholder="Ingresa Fecha de Emision">
+                                    </div>
+                                </div>
+                                </div>
+                                
                                 <div class="form-group row">
                                     <span>RUC: </span>
                                     <div class="input-group-append col-md-6">
@@ -103,6 +112,7 @@ if($_SESSION['us_tipo']==1 || $_SESSION['us_tipo']==3 ){
                                             <th scope="col">Vencimiento</th>
                                             <th scope="col">Presentacion</th>
                                             <th scope="col">Laboratorio</th>
+                                            <th scope="col">Precio/Sin. IGV</th>
                                             <th scope="col">Precio</th>
                                             <th scope="col">Cantidad</th>
                                             <th scope="col">Sub Total</th>

@@ -56,8 +56,7 @@
                                     <th>Eliminar</th>
                                 </tr>
                             </thead>
-                            <tbody id="lista_carrito" style="text-align: center;">
-                                
+                            <tbody id="lista_carrito" style="text-align: center;">                               
                             </tbody>
                         </table>
                         <div style="text-align: center;">
@@ -82,6 +81,10 @@
             height: 100%;
             background: #0F2027;
         }
+        hr.solid {
+  border-top: 0.4px solid #9E9998 ;
+}
+
         </style>
         <!-- Main Sidebar Container -->
         <aside class="sidebar main-sidebar sidebar-dark-primary elevation-4">
@@ -100,6 +103,17 @@
                               echo $_SESSION['nombre_us'];
                             ?></span></b>
             </a>
+            <div class="form-inline mt-3">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+      <hr class="solid">
             <!-- Sidebar -->
             <div class="sidebar">
                 <!-- Sidebar user (optional) -->
@@ -122,7 +136,7 @@
                             <a href="adm_usuario.php" class="nav-link">
                                 <i class="nav-icon fas fa-users""></i>                        
                                 <p>                               
-                                    Gestion Usuario
+                                    Control Usuario
                                 </p>
                             </a>
                             <li class="nav-header">CLINICAS</li>
@@ -130,7 +144,7 @@
                             <a href="adm_cliente.php" class="nav-link">
                                 <i class="nav-icon fas fa-hospital-user"></i>
                                 <p>
-                                    Gestion de Clientes
+                                    Clientes SIS-FISSAL
                                 </p>
                             </a>
                         </li>
@@ -139,8 +153,7 @@
                             <a href="adm_producto.php" class="nav-link">
                                 <i class="nav-icon fas fa-pills"></i>
                                 <p>
-
-                                    Gestionar Producto
+                                    Gestion Producto
                                 </p>
                             </a>
                         </li>
@@ -156,7 +169,7 @@
                             <a href="adm_lote.php" class="nav-link">
                                 <i class="nav-icon fas fa-cubes"></i>
                                 <p>
-                                    Gestion Lotes
+                                    Actualizar Lotes
                                 </p>
                             </a>
                         </li>
@@ -188,7 +201,7 @@
                         </li>
                         <li class="nav-header">ENCOMIENDAS</li>
                         <li class="nav-item">
-                            <a href="tec_encomiendas" class="nav-link">
+                            <a href="adm_cotizaciones.php" class="nav-link">
                                 <i class="nav-icon fas fa-user-cog"></i>
                                 <p>
                                     Envios a Departamentos
